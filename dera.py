@@ -170,8 +170,8 @@ def show_ui():
     """
     #st.set_page_config(page_title="Chavera Medical Bot")
     #st.set_page_config(page_title="Chavera Medical Bot")
-    st.title("Analytx4t Chatbot")
-    st.subheader("Hey there! Let’s explore Analytx4t!")
+    st.title("Dera Farm Chatbot")
+    st.subheader("Hey there! Let’s explore dera farm!")
 
 
     # List of beginner queries
