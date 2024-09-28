@@ -20,7 +20,7 @@ import os
 import streamlit as st
 from dotenv import load_dotenv
 
-st.set_page_config(page_title="Analytx4t Chatbot")
+st.set_page_config(page_title="Dera Farm Chatbot")
 
 # Load Google API key
 load_dotenv()
