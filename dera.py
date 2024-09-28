@@ -162,60 +162,35 @@ def ask_query(question, chat_history):
     # Pass the reranked docs to the QA chain
     return convo_qa_chain.invoke({"input": question, "chat_history": chat_history, "context": reranked_docs})
 
-
-
-import streamlit as st
-
 def show_ui():
     """
-    This function implements the Streamlit UI for the Chatbot.
-    It provides an interface where users can either ask their own questions
-    or click on preset beginner queries (displayed as buttons).
-    When the user clicks a button, the corresponding question is submitted,
-    and the response is displayed.
+    1. This function implements the Streamlit UI for the Chatbot.
+    2. It provides an interface where users can either ask their own questions or click on preset beginner queries (displayed as buttons).
+    3. When the user clicks a button, the corresponding question is submitted, and the response is displayed.
     """
-    st.title("Dera Farm Chatbot")
-    st.subheader("Hey there! Let’s discuss about us!")
+    #st.set_page_config(page_title="Chavera Medical Bot")
+    #st.set_page_config(page_title="Chavera Medical Bot")
+    st.title("Analytx4t Chatbot")
+    st.subheader("Hey there! Let’s explore Analytx4t!")
 
-    # User Info Form (only shown once)
-    if "user_info" not in st.session_state:
-        with st.form("user_info_form"):
-            st.write("Please provide your information:")
-            name = st.text_input("Name")
-            email = st.text_input("Email")
-            number = st.text_input("Phone Number")
-            submit = st.form_submit_button("Submit")
-            skip = st.form_submit_button("Skip")
 
-            if submit or skip:
-                st.session_state.user_info = {
-                    "name": name,
-                    "email": email,
-                    "number": number
-                } if submit else {"name": "Anonymous", "email": None, "number": None}
-                st.success("User information received!")
+    # List of beginner queries
+    beginner_queries = [
+        "What is this website about?",
+        "What products does Dera Farms offer?",
+        "How are Dera Farms' chickens raised?",
+        "How can I place an order for Dera Farms products?"
+    ]
 
-    # Check if the user info is provided or skipped
-    if "user_info" in st.session_state:
-        st.write(f"Welcome, {st.session_state.user_info['name']}!")
+    # Display beginner queries as buttons
+    cols = st.columns(3)  # Create 3 columns for buttons
 
-        # List of beginner queries
-        beginner_queries = [
-            "What is this website about?",
-            "What products does Dera Farms offer?",
-            "How are Dera Farms' chickens raised?",
-            "How can I place an order for Dera Farms products?"
-        ]
-
-        # Display beginner queries as buttons
-        cols = st.columns(3)  # Create 3 columns for buttons
-        selected_query = None
-
+    selected_query = None
     for i, query in enumerate(beginner_queries):
         if cols[i % 3].button(query, key=f"query_button_{i}"):  # Add a unique key for each button
-            selected_query = query
+           selected_query = query
 
- # Initialize session state if not set
+    # Initialize session state if not set
     if "messages" not in st.session_state:
         st.session_state.messages = []
         st.session_state.chat_history = []  # Initialize chat_history as an empty list
